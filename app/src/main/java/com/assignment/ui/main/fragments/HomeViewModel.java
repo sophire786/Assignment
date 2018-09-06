@@ -13,4 +13,19 @@ public class HomeViewModel extends BaseViewModel<HomeNavigator> {
             SchedulerProvider schedulerProvider) {
         super(apiHelper, schedulerProvider);
     }
+
+    public void getListData() {
+        setIsLoading(true);
+        getCompositeDisposable().add(getApiHelper().getListApi()
+                .subscribeOn(getSchedulerProvider().io())
+                .observeOn(getSchedulerProvider().ui())
+                .subscribe(response -> {
+                    setIsLoading(false);
+                    getNavigator().upDateList(response);
+                }, throwable -> {
+                    setIsLoading(false);
+                    getNavigator().handleError(throwable);
+                }));
+
+    }
 }

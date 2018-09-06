@@ -36,7 +36,7 @@ public final class CommonUtils {
     }
 
     /*
-     * display loading of progress bar when app is fetching data from server
+     * display loading of progress bar when app is fetching Data from server
      * */
     public static ProgressDialog showLoadingDialog(Context context) {
         ProgressDialog progressDialog = new ProgressDialog(context);

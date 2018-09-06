@@ -11,6 +11,7 @@ import com.assignment.BR;
 import com.assignment.R;
 import com.assignment.databinding.ActivityMainBinding;
 import com.assignment.ui.base.BaseActivity;
+import com.assignment.ui.main.fragments.HomeFragment;
 
 import javax.inject.Inject;
 
@@ -60,6 +61,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         mActivityMainBinding = getViewDataBinding();
         mMainViewModel.setNavigator(this);
         setUp();
+        showFragment(getResources().getString(R.string.strDashBoard),
+                HomeFragment.newInstance(), HomeFragment.TAG);
     }
 
     @Override
@@ -93,5 +96,23 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         mToolbar = mActivityMainBinding.toolbar;
         setSupportActionBar(mToolbar);
     }
-
+    public void showFragment(String title, Fragment fragment, String tag) {
+        mToolbar.setTitle(title);
+        if (fragment instanceof HomeFragment) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .setCustomAnimations(R.anim.slide_left, R.anim.slide_right)
+                    .add(R.id.container, fragment, tag)
+                    .commit();
+        } else {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .addToBackStack(tag)
+                    .setCustomAnimations(R.anim.slide_left, R.anim.slide_right)
+                    .replace(R.id.container, fragment, tag)
+                    .commit();
+        }
+    }
 }

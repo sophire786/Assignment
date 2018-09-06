@@ -10,9 +10,9 @@ import retrofit2.http.GET;
  */
 public interface RestInterface {
     //Base Url
-    String HTTPS_API_URL = "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json";
+    String HTTPS_API_URL = "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/";
 
-    @GET()
+    @GET("facts.json/")
     Single<Data> getListData();
 
 }

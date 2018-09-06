@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
+import com.assignment.di.component.DaggerAppComponent;
 
 /**
  * Created by Neelam Saxena on 6/9/18.
@@ -24,5 +25,9 @@ public class AssignmentApplication extends Application implements HasActivityInj
     @Override
     public void onCreate() {
         super.onCreate();
+        DaggerAppComponent.builder()
+                .application(this)
+                .build()
+                .inject(this);
     }
 }

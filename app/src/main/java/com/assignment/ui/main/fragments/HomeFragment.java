@@ -6,8 +6,10 @@ import android.view.Menu;
 
 import com.assignment.BR;
 import com.assignment.R;
+import com.assignment.data.model.api.Data;
 import com.assignment.databinding.FragmentHomeBinding;
 import com.assignment.ui.base.BaseFragment;
+import com.assignment.utility.Debug;
 
 import javax.inject.Inject;
 
@@ -50,6 +52,8 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mHomeViewModel.setNavigator(this);
+        mHomeViewModel.getListData();
+        mFragmentHomeBinding=getViewDataBinding();
         setHasOptionsMenu(true);
     }
 
@@ -59,5 +63,15 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         if (menu.findItem(R.id.action_settings) != null) {
             menu.findItem(R.id.action_settings).setVisible(false);
         }
+    }
+
+    @Override
+    public void upDateList(Data data) {
+        Debug.d(TAG, "Gettong data from " + data.getRows().size());
+    }
+
+    @Override
+    public void handleError(Throwable throwable) {
+        Debug.d(TAG, "throwable" + throwable.getMessage());
     }
 }
