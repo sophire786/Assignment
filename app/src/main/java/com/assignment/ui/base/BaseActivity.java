@@ -134,4 +134,17 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
             getWindow().setReturnTransition(transition);
         }
     }
+
+//    @Override
+//    public void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        outState.putParcelable("obj", myClass);
+//    }
+//
+//    @Override
+//    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+//        // TODO Auto-generated method stub
+//        super.onRestoreInstanceState(savedInstanceState);
+//        myClass=savedInstanceState.getParcelable("obj"));
+//    }
 }

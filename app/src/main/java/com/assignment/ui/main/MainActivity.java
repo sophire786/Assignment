@@ -1,6 +1,7 @@
 package com.assignment.ui.main;
 
 import android.arch.lifecycle.ViewModelProvider;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
@@ -96,6 +97,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         mToolbar = mActivityMainBinding.toolbar;
         setSupportActionBar(mToolbar);
     }
+
     public void showFragment(String title, Fragment fragment, String tag) {
         mToolbar.setTitle(title);
         if (fragment instanceof HomeFragment) {
@@ -115,4 +117,22 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                     .commit();
         }
     }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        // Checks the orientation of the screen
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.container);
+        if (currentFragment instanceof HomeFragment) {
+            ((HomeFragment) currentFragment).getViewModel().getListData();
+        }
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+
+        }
+    }
+
+
 }
