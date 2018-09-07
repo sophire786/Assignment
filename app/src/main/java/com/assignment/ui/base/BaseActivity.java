@@ -29,7 +29,7 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
     // TODO
     // this can probably depend on isLoading variable of BaseViewModel,
     // since its going to be common for all the activities
-    private ProgressDialog mProgressDialog;
+
     private T mViewDataBinding;
     private V mViewModel;
 
@@ -93,11 +93,7 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
         }
     }
 
-    public void hideLoading() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.cancel();
-        }
-    }
+
 
     public boolean isNetworkConnected() {
         return CommonUtils.isNetworkConnected(getApplicationContext());
@@ -114,10 +110,6 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
         }
     }
 
-    public void showLoading() {
-        hideLoading();
-        mProgressDialog = CommonUtils.showLoadingDialog(this);
-    }
 
     private void performDataBinding() {
         mViewDataBinding = DataBindingUtil.setContentView(this, getLayoutId());
@@ -134,17 +126,4 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
             getWindow().setReturnTransition(transition);
         }
     }
-
-//    @Override
-//    public void onSaveInstanceState(Bundle outState) {
-//        super.onSaveInstanceState(outState);
-//        outState.putParcelable("obj", myClass);
-//    }
-//
-//    @Override
-//    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-//        // TODO Auto-generated method stub
-//        super.onRestoreInstanceState(savedInstanceState);
-//        myClass=savedInstanceState.getParcelable("obj"));
-//    }
 }

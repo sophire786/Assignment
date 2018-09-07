@@ -1,5 +1,7 @@
 package com.assignment.ui.main.fragments;
 
+import android.arch.lifecycle.ViewModelProviders;
+
 import com.assignment.common.rx.SchedulerProvider;
 import com.assignment.data.remote.ApiHelper;
 import com.assignment.ui.main.adapter.ListAdapter;

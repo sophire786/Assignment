@@ -1,6 +1,7 @@
 package com.assignment.ui.main;
 
 import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -53,12 +54,16 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     @Override
     public MainViewModel getViewModel() {
+        mMainViewModel = ViewModelProviders.of(this, mViewModelFactory).get(MainViewModel.class);
         return mMainViewModel;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (mMainViewModel == null) {
+            mMainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        }
         mActivityMainBinding = getViewDataBinding();
         mMainViewModel.setNavigator(this);
         setUp();
@@ -98,6 +103,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         setSupportActionBar(mToolbar);
     }
 
+    public void updateTittle(String tittle){
+        mToolbar.setTitle(tittle);
+    }
+
     public void showFragment(String title, Fragment fragment, String tag) {
         mToolbar.setTitle(title);
         if (fragment instanceof HomeFragment) {
@@ -122,11 +131,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
 
-        // Checks the orientation of the screen
-        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.container);
-        if (currentFragment instanceof HomeFragment) {
-            ((HomeFragment) currentFragment).getViewModel().getListData();
-        }
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
 
         } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {

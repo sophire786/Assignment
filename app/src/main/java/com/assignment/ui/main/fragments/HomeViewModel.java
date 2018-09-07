@@ -28,6 +28,7 @@ public class HomeViewModel extends BaseViewModel<HomeNavigator> {
 
     public void getListData() {
         setIsLoading(true);
+
         getCompositeDisposable().add(getApiHelper().getListApi()
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())

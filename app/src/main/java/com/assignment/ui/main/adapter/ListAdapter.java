@@ -62,6 +62,12 @@ public class ListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
         holder.onBind(position);
+
+        if(holder instanceof ItemViewHolder){
+
+
+        }
+
     }
 
     public void setListener(AdapterListener listener) {
@@ -94,7 +100,8 @@ public class ListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     public class ItemViewHolder extends BaseViewHolder {
 
         private final ItemRowBinding mBinding;
-
+        // We'll use this field to showcase matching the holder from the test.
+      //  private boolean mIsInTheMiddle = false;
         public ItemViewHolder(ItemRowBinding binding) {
             super(binding.getRoot());
             this.mBinding = binding;
@@ -111,14 +118,26 @@ public class ListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                     mListener.onItemClick(position);
                 }
             });
-
+//            if (position == mRowList.size() / 2 /* calculate middle element position */) {
+//                setIsInTheMiddle(true);
+//                mBinding.txtTitle.setText(context.getResources().getString(R.string.middle));
+//            } else {
+//                setIsInTheMiddle(false);
+//              //  mBinding.txtTitle.setText(mDataSet.get(position));
+//            }
             // Immediate Binding
             // When a variable or observable changes, the binding will be scheduled to change before
             // the next frame. There are times, however, when binding must be executed immediately.
             // To force execution, use the executePendingBindings() method.
             mBinding.executePendingBindings();
         }
-
+//       public boolean getIsInTheMiddle() {
+//            return mIsInTheMiddle;
+//        }
+//
+//        void setIsInTheMiddle(boolean isInTheMiddle) {
+//            mIsInTheMiddle = isInTheMiddle;
+//        }
 //
     }
 
