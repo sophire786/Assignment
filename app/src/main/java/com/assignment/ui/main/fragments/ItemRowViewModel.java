@@ -2,12 +2,16 @@ package com.assignment.ui.main.fragments;
 
 import android.databinding.BindingAdapter;
 import android.databinding.ObservableField;
+import android.graphics.Bitmap;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.assignment.R;
 import com.assignment.utility.Debug;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.DecodeFormat;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 
 /**
@@ -29,14 +33,24 @@ public class ItemRowViewModel {
         }
         this.mTittle.set(tittle);
         this.mDesc.set(desc);
-        requestOptions.placeholder(R.drawable.placeholder);
+        requestOptions.circleCrop();
         requestOptions.error(R.drawable.placeholder);
+        requestOptions.placeholder(R.drawable.placeholder);
+        requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
+        requestOptions.dontTransform();
+        requestOptions.dontAnimate();
+        requestOptions.encodeFormat(Bitmap.CompressFormat.PNG);
+        requestOptions.format(DecodeFormat.PREFER_ARGB_8888);
+        requestOptions.priority(Priority.HIGH);
+        requestOptions.centerCrop();
+        requestOptions.fitCenter();
+
     }
 
     @BindingAdapter({"imageUrl"})
     public static void setImageUrl(ImageView imageView, String url) {
         if (url == null) {
-            imageView.setBackgroundResource(R.drawable.placeholder);
+            Glide.with(imageView.getContext()).clear(imageView);
         } else {
             Glide.with(imageView.getContext())
                     .setDefaultRequestOptions(requestOptions)
@@ -45,12 +59,13 @@ public class ItemRowViewModel {
         }
     }
 
+
     @BindingAdapter("desc")
     public static void setDescription(TextView view, String desc) {
-        Debug.d("Viewmodel","Desc "+desc);
-        if(desc!=null) {
+        Debug.d("Viewmodel", "Desc " + desc);
+        if (desc != null) {
             view.setText(desc);
-        }else {
+        } else {
             view.setText(R.string.no_desc);
             view.setTextColor(R.color.colorgray);
         }
