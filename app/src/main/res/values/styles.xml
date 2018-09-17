@@ -13,5 +13,41 @@
     </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="Toolbar" parent="Base.ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">?attr/actionBarSize</item>
+        <item name="colorControlNormal">@color/colorwhite</item>
+    </style>
 
+    <style name="Toolbar.TitleText" parent="TextStyle.Heading">
+        <item name="android:textColor">@color/colorwhite</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+    <style name="TextStyle.Heading" parent="TextStyle">
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="TextStyle">
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:layout_marginBottom">2dp</item>
+        <item name="android:layout_marginLeft">2dp</item>
+        <item name="android:layout_marginRight">2dp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+    <style name="Button" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:foreground">?selectableItemBackground</item>
+    </style>
+    <style name="Button.Action.Positive" parent="Button">
+        <item name="android:textColor">@drawable/ic_launcher_background</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:background">@color/transparent</item>
+    </style>
 </resources>

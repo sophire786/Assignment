@@ -1,3 +1,13 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="size_30">30dp</dimen>
+    <dimen name="text_size16">16sp</dimen>
+    <dimen name="text_size14">14sp</dimen>
+    <dimen name="text_size12">12sp</dimen>
+    <dimen name="size_50">50dp</dimen>
+    <dimen name="size_100">100dp</dimen>
+    <dimen name="size_10">10dp</dimen>
+    <dimen name="padding15">15dp</dimen>
+    <dimen name="size_250">250dp</dimen>
+    <dimen name="size_300">300dp</dimen>
 </resources>

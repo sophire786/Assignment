@@ -1,7 +1,12 @@
 package com.assignment;
 
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
+
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
+import android.support.test.espresso.contrib.RecyclerViewActions;
+import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.Test;
@@ -22,5 +27,12 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         assertEquals("com.assignment", appContext.getPackageName());
+    }
+
+    @Test
+    public void checkItemPosition() {
+        onView(ViewMatchers.withId(R.id.rv_row))
+                .perform(
+                        RecyclerViewActions.actionOnItemAtPosition(5, click()));
     }
 }
