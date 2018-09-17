@@ -151,8 +151,12 @@ public class ListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     }
 
     public void addItems(List<ItemRowViewModel> repoList) {
-        mRowList.addAll(repoList);
-        notifyDataSetChanged();
+        //if(!mRowList.(repoList)) {
+          mRowList.clear();
+            mRowList.addAll(repoList);
+            notifyDataSetChanged();
+        //}
+        Debug.d(TAG,"MRow list "+mRowList.size());
     }
 
     public void clearItems() {

@@ -176,6 +176,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         mFragmentHomeBinding.mSwipeRefreshLayout.setRefreshing(false);
         if (isNetworkConnected()) {
             showLoading();
+
             mHomeViewModel.getListData();
         } else {
             AlertDialog.newInstance().show(getActivity().getSupportFragmentManager());
